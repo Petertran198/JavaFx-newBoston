@@ -18,15 +18,8 @@ public class Main extends Application {
         button = new Button();
         button.setText("This is a button");
 
-        // You can set an anonymous function inside the button to handle events
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (actionEvent.getSource()== button ){
-                    System.out.println("Oh I love it when u touched me there");
-                }
-            }
-        });
+        // You can set an anonymous function using lambda inside the button to handle events
+        button.setOnAction(e-> System.out.println("hi"));
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
