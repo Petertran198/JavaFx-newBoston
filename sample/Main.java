@@ -9,7 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 //Anytime you want to handle user events u got to implement the EventHandler interface
-public class Main extends Application implements EventHandler<ActionEvent> {
+public class Main extends Application {
     Button button;
 
     @Override
@@ -17,7 +17,16 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         primaryStage.setTitle("This is the primary stage or window" );
         button = new Button();
         button.setText("This is a button");
-        button.setOnAction(this); // this is just saying the code to handle the event action of this button is in this class (aka the handleEvent method) instead of another file
+
+        // You can set an anonymous function inside the button to handle events
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (actionEvent.getSource()== button ){
+                    System.out.println("Oh I love it when u touched me there");
+                }
+            }
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -28,13 +37,6 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         primaryStage.show();
     }
 
-    @Override
-    // Called when the user clicks or handle an event
-    public void handle(ActionEvent actionEvent) {
-        if (actionEvent.getSource()== button ){
-            System.out.println("Oh I love it when u touched me there");
-        }
-    }
 
     public static void main(String[] args) {
         launch(args);
